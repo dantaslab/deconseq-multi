@@ -133,7 +133,7 @@ Z-best value as used by BWA-SW (default: 1).
 
 Alignment score threshold as used by BWA-SW (default: 30).
 
-=item B<-threads> <integer>
+=item B<-t> <integer>
 
 Number of threads to be utilized by BWA-SW
 
@@ -283,7 +283,7 @@ foreach my $db (@dbs) {
     my @refdbs = split(/\,/,DBS->{$db}->{db});
     foreach my $refdb (@refdbs) {
         my $tsvfile = $params{out_dir}.$params{id}.'_'.$db.'_'.$refdb.'.tsv';
-        my $cmd = PROG_DIR.PROG_NAME.' bwasw -A -f '.$tsvfile.(exists $params{S} ? ' -S '.$params{S} : '').(exists $params{z} ? ' -z '.$params{z} : '').(exists $params{T} ? ' -T '.$params{T} : '').' '.DB_DIR.$refdb.' '.$params{f};
+        my $cmd = PROG_DIR.PROG_NAME.' bwasw -A -f '.$tsvfile.(exists $params{S} ? ' -S '.$params{S} : '').(exists $params{z} ? ' -z '.$params{z} : '').(exists $params{T} ? ' -T '.$params{T} : '').(exists $params{t} ? ' -t '.$params{t} : '').' '.DB_DIR.$refdb.' '.$params{f};
         unless(-e $tsvfile) {
             open(TSV, ">$tsvfile") or &printError("Could not create tsv file $tsvfile: $!");
             close(TSV);
@@ -316,7 +316,7 @@ if(@dbs_retain) {
             my @refdbs = split(/\,/,DBS->{$db}->{db});
             foreach my $refdb (@refdbs) {
                 my $tsvfile = $params{out_dir}.$params{id}.'_'.$db.'_'.$refdb.'.tsv';
-                my $cmd = PROG_DIR.PROG_NAME.' bwasw -A -f '.$tsvfile.(exists $params{S} ? ' -S '.$params{S} : '').(exists $params{z} ? ' -z '.$params{z} : '').(exists $params{T} ? ' -T '.$params{T} : '').' '.DB_DIR.$refdb.' '.$params{f};
+                my $cmd = PROG_DIR.PROG_NAME.' bwasw -A -f '.$tsvfile.(exists $params{S} ? ' -S '.$params{S} : '').(exists $params{z} ? ' -z '.$params{z} : '').(exists $params{T} ? ' -T '.$params{T} : '').(exists $params{t} ? ' -t '.$params{t} : '').' '.DB_DIR.$refdb.' '.$params{f};
                  unless(-e $tsvfile) {
                     open(TSV, ">$tsvfile") or &printError("Could not create tsv file $tsvfile: $!");
                     close(TSV);
