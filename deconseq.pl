@@ -133,6 +133,10 @@ Z-best value as used by BWA-SW (default: 1).
 
 Alignment score threshold as used by BWA-SW (default: 30).
 
+=item B<-threads> <integer>
+
+Number of threads to be utilized by BWA-SW
+
 =back
 
 =head1 AUTHOR
