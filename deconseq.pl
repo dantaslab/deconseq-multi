@@ -25,7 +25,7 @@ use lib "$FindBin::Bin";
 
 use DeconSeqConfig;
 use Data::Dumper;
-use Getopt::Long;
+use Getopt::Long qw(:config no_ignore_case);
 use Pod::Usage;
 use File::Path qw(make_path); #requires version 2.07 or newer
 use Cwd;
@@ -35,7 +35,7 @@ $| = 1; # Do not buffer output
 my $man = 0;
 my $help = 0;
 my %params = ('help' => \$help, 'h' => \$help, 'man' => \$man);
-GetOptions(\%params, 'help|h', 'man', 'no_seq_out', 'keep_tmp_files', 'dbs=s', 'dbs_retain=s', 'f=s', 'out_dir=s', 'i=i', 'c=i', 'group=i', 'id=s', 'version' => sub { print VERSION_INFO."\n"; exit; }, 'show_dbs' => sub { print $_." - ".DBS->{$_}->{name}."\n" foreach(sort keys %{(DBS)}); exit; }, 'S=i', 'z=i', 'T=i') or pod2usage(2);
+GetOptions(\%params, 'help|h', 'man', 'no_seq_out', 'keep_tmp_files', 'dbs=s', 'dbs_retain=s', 'f=s', 'out_dir=s', 'i=i', 'c=i', 'group=i', 'id=s', 'version' => sub { print VERSION_INFO."\n"; exit; }, 'show_dbs' => sub { print $_." - ".DBS->{$_}->{name}."\n" foreach(sort keys %{(DBS)}); exit; }, 'S=i', 'z=i', 'T=i', 't=i') or pod2usage(2);
 pod2usage(1) if $help;
 pod2usage(-exitstatus => 0, -verbose => 2) if $man;
 
